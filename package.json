@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "core-js": "^3.1.2",
-    "starlette": "^0.4.4",
+    "starlette": "^1.0.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {
