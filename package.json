@@ -13,7 +13,9 @@
     "help": "bombino-cmd help"
   },
   "dependencies": {
+    "cep-spy": "^1.2.0",
     "core-js": "^3.1.2",
+    "lokney": "^1.0.4",
     "starlette": "^1.0.2",
     "vue": "^2.6.10"
   },
