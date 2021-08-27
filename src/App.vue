@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- This is the root of your panel -->
-    <!-- Content should go inside #app -->
+    <!-- Content should go inside #app, never delete the #app element (required by Vue) -->
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue CLI panel" />
   </div>
@@ -18,16 +18,29 @@ import HelloWorld from "./components/HelloWorld.vue";
 // https://github.com/Inventsable/starlette
 import starlette from "starlette";
 
+// Package to get around CORS policies since the most recent Adobe updates block iframes from evalScript return values
+import { evalScript } from "workaround";
+
 export default {
   name: "app",
   components: {
-    HelloWorld
+    HelloWorld,
   },
   data: () => ({
-    csInterface: null
+    csInterface: null,
   }),
   mounted() {
-    this.csInterface = new CSInterface();
+    this.csInterface = new CSInterface(); // NOTE: This will not work in DEVELOPER under CORS with Adobe apps newer than AUG2021
+    // For a universal solution, use the evalScript method from the package named "workaround":
+
+    // You'll need to install and import { evalScript } from "workaround" for the below:
+    // let runScript = evalScript(
+    //   `(function() { alert("Hello world"); return true } ())`
+    // ).then((result) => {
+    //   console.log(result);
+    // });
+
+    // For theme handling and UI changes:
     starlette.init();
   },
   methods: {
@@ -36,10 +49,10 @@ export default {
       event.data = data;
       this.csInterface.dispatchEvent(event);
     },
-    loadScript(path) {
-      this.csInterface.evalScript(`$.evalFile('${path}')`);
-    }
-  }
+    async loadScript(path) {
+      return await evalScript(`$.evalFile('${path}')`);
+    },
+  },
 };
 </script>
 

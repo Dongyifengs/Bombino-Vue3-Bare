@@ -8,7 +8,7 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
   },
   computed: {
     // Use as this.app
@@ -18,14 +18,14 @@ export default {
     // Use as this.cs
     cs() {
       return this.app.csInterface;
-    }
+    },
   },
   mounted() {
     console.log("Top-level root instance (App.vue):");
     console.log(this.app);
     console.log("CSInteface:");
     console.log(this.cs);
-  }
+  },
 };
 </script>
 
