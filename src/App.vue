@@ -18,8 +18,8 @@ import HelloWorld from "./components/HelloWorld.vue";
 // https://github.com/Inventsable/starlette
 import starlette from "starlette";
 
-// Package to get around CORS policies since the most recent Adobe updates block iframes from evalScript return values
-import { evalScript } from "workaround";
+// Asynchronous evalScript method
+import { evalScript } from "cluecumber";
 
 export default {
   name: "app",
@@ -30,17 +30,7 @@ export default {
     csInterface: null,
   }),
   mounted() {
-    this.csInterface = new CSInterface(); // NOTE: This will not work in DEVELOPER under CORS with Adobe apps newer than AUG2021
-    // For a universal solution, use the evalScript method from the package named "workaround":
-
-    // You'll need to install and import { evalScript } from "workaround" for the below:
-    // let runScript = evalScript(
-    //   `(function() { alert("Hello world"); return true } ())`
-    // ).then((result) => {
-    //   console.log(result);
-    // });
-
-    // For theme handling and UI changes:
+    this.csInterface = new CSInterface();
     starlette.init();
   },
   methods: {
