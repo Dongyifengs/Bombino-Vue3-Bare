@@ -1,53 +1,62 @@
 <template>
   <div id="app">
-    <!-- This is the root of your panel -->
-    <!-- Content should go inside #app, never delete the #app element (required by Vue) -->
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue CLI panel" />
+    <!-- 应用的根容器 -->
+    <!-- 所有内容都应放在 #app 内，不要删除 #app 元素（Vue 必需） -->
+    <img alt="Vue Logo" src="./assets/logo.png" />
+    <HelloWorld :msg="'欢迎使用你的 Vue CLI 面板'" />
   </div>
 </template>
 
 <script>
-// You can access this App.vue file from any other component via `this.$root.$children[0]`
-// See `./components/HelloWorld.vue` for example of CSInterface and this.app
-
-// Create your own components and import them here
+// 引入必要模块
+import { defineComponent, onMounted, ref } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 
-// Dynamic CSS variables that automatically handle all app themes and changes:
-// https://github.com/Inventsable/starlette
+// 动态 CSS 变量自动处理所有应用主题和更改
 import starlette from "starlette";
 
-// Asynchronous evalScript method
+// 异步 evalScript 方法
 import { evalScript } from "cluecumber";
 
-export default {
-  name: "app",
+export default defineComponent({
+  name: "App",
   components: {
     HelloWorld,
   },
-  data: () => ({
-    csInterface: null,
-  }),
-  mounted() {
-    this.csInterface = new CSInterface();
-    starlette.init();
-  },
-  methods: {
-    dispatchEvent(name, data) {
-      var event = new CSEvent(name, "APPLICATION");
+  setup() {
+    // 声明响应式数据
+    const csInterface = ref(null);
+
+    // 生命周期挂载时执行
+    onMounted(() => {
+      csInterface.value = new CSInterface();
+      starlette.init(); // 初始化动态主题
+    });
+
+    // 触发事件方法
+    const dispatchEvent = (name, data) => {
+      const event = new CSEvent(name, "APPLICATION");
       event.data = data;
-      this.csInterface.dispatchEvent(event);
-    },
-    async loadScript(path) {
+      csInterface.value.dispatchEvent(event);
+    };
+
+    // 加载脚本方法
+    const loadScript = async (path) => {
       return await evalScript(`$.evalFile('${path}')`);
-    },
+    };
+
+    // 返回方法和数据
+    return {
+      csInterface,
+      dispatchEvent,
+      loadScript,
+    };
   },
-};
+});
 </script>
 
-<style>
-/* Various helper styles to match application theme */
+<style scoped>
+/* 匹配应用主题的辅助样式 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 :root {
   background-color: var(--color-bg);

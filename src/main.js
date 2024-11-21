@@ -1,9 +1,11 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
 
-Vue.config.productionTip = false;
-Vue.config.devtools = false;
+const app = createApp(App);
 
-new Vue({
-  render: h => h(App)
-}).$mount('#app');
+// 全局配置（根据需要调整）
+app.config.globalProperties.$productionTip = false;
+app.config.globalProperties.$devtools = false;
+
+// 挂载应用
+app.mount('#app');

@@ -1,22 +1,22 @@
-## Important notes about manifest.xml:
+## 关于 manifest.xml 的重要说明：
 
 ```xml
 <DispatchInfo>
   <Resources>
-    <!-- Default (no hot reload) -->
+    <!-- 默认（无热重载） -->
     <MainPath>./index.html</MainPath>
 
-    <!-- Dev build w/ hot reload -->
+    <!-- 带热重载的开发版本 -->
     <MainPath>./index-dev.html</MainPath>
 
-    <!-- The above must be manually toggled between `npm run build` and `npm run serve` serve commands, then relaunch the host app to take effect. -->
+    <!-- 必须在 'npm run build' 和 'npm run serve' serve 命令之间手动切换上述命令，然后重新启动主机应用程序才能生效。 -->
 
-    <!-- Make sure to include parameters for NodeJS: -->
+    <!-- 确保包含 NodeJS 的参数： -->
     <CEFCommandLine>
       <Parameter>--enable-nodejs</Parameter>
-      <!-- Doesn't show in Window > Extensions unless mixed content is enabled -->
+      <!-- 除非启用混合内容，否则不会显示在窗口 > 扩展中 -->
       <Parameter>--mixed-context</Parameter>
-      <!-- Cannot use require('fs') inside index-dev.html's iframe -->
+      <!-- 无法在 index-dev.html 的 iframe 中使用 require（'fs'） -->
     </CEFCommandLine>
   </Resources>
 ```

@@ -1,27 +1,27 @@
-# bombino-vue-bare
+# Bombino-Vue3-Bare
 
-## Template used in [bombino](https://github.com/Inventsable/bombino)
+## 模板用于 [bombino](https://github.com/Inventsable/bombino)
 
-> **NOTE:** This repo should not be `git clone`d directly because it has breaking placeholder values and will not run on it's own.
+> **注意：** 此存储库不应直接使用 `git clone`，因为它具有破坏性的占位符值，并且不会自行运行。
 
 ```bash
-# Node and bombino are required
+# Node 和 bombino 是必需的
 npm install -g bombino
 
-# In any valid CEP extension folder:
-# (e.g. <USERNAME>/AppData/Roaming/CEP/extensions)
+# 在任何有效的 CEP 扩展文件夹中：
+# （例如 <USERNAME>/AppData/Roaming/CEP/extensions）
 bombino
 ```
 
-## No setup required for:
+## 无需设置：
 
-- [Vue](https://vuejs.org/) as JS framework
-- Hot Reloading (panel updates instantly on every save during `npm run serve`)
-- [Vue-CLI-3](https://cli.vuejs.org/) as Node.js tooling (webkit)
-- ✨ [All color themes of any host app automatically handled by starlette library](https://github.com/Inventsable/starlette) ✨
+- [Vue3]（https://vuejs.org/） 作为 JS 框架
+- 热重载（在“npm run serve”期间，面板在每次保存时立即更新）
+- [Vue-CLI-3]（https://cli.vuejs.org/） 作为 Node.js 工具 （webkit）
+- ✨ [Starlette 库自动处理任何主机应用程序的所有颜色主题]（https://github.com/Inventsable/starlette） ✨
 
-## [Never used Node, Vue CLI-3 or Webpack?](#Getting-Started)
-
+## [从未使用过 Node、Vue CLI-3 或 Webpack？（#Getting - 开始）
+Z
 ---
 
 ## Commands
